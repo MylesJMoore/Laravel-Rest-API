@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,13 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::get('/products/search/{name}', [ProductController::class, 'search']);
+
+//Totals for Insurances
+Route::get('/sum', [SumController::class, 'all']);
+Route::get('/sum/county', [SumController::class, 'sumOfCounty']);
+Route::get('/sum/line', [SumController::class, 'sumOfLine']);
+Route::get('/sum/all', [SumController::class, 'sumOfAll']);
+Route::get('/sum/output', [SumController::class, 'outputFile']);
 
 //Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
